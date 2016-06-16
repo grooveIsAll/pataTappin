@@ -1,0 +1,21 @@
+<! DOCTYPE html>
+<html>
+  <head>
+    <title>PataTappin'</title>
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <script type="text/javascript" src="assets/javascript/paperFull.js"></script>
+    <!-- Define inlined PaperScript associate it with myCanvas -->
+    <script type="text/paperscript" canvas="myCanvas">  
+
+      var myCircle = new Path.Circle(new Point(200, 90), 60);
+      myCircle.fillColor = 'red';
+      <!-- myCircle.selected = true; -->
+    </script>
+  </head>
+  <body>
+    <h1>Hello Funky World!</h1>
+    <canvas id="myCanvas" resize></canvas>
+
+    <!-- <script type="text/javascript" src="assets/javascript/app.js"></script> -->
+  </body>
+</html>
