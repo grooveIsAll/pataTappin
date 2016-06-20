@@ -4,27 +4,87 @@
     <title>PataTappin'</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <script type="text/javascript" src="assets/javascript/paperFull.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/1.1.29/howler.min.js"></script>
     <!-- Define inlined PaperScript associate it with myCanvas -->
-    <script type="text/paperscript" canvas="myCanvas"> 
+    <script type="text/paperscript" canvas="myCanvas">
+      var keyData = {
+        a: {
+          color: 'red',
+          sound: new Howl({
+            urls: ['assets/sounds/bubbles.mp3']
+          })
+        },
+        a: {
+          color: 'blue',
+          sound: new Howl({
+            urls: ['assets/sounds/clay.mp3']
+          })
+        },
+        s: {
+          color: 'purple',
+          sound: new Howl({
+            urls: ['assets/sounds/confetti.mp3']
+          })
+        },
+        d: {
+          color: 'orange',
+          sound: new Howl({
+            urls: ['assets/sounds/corona.mp3']
+          })
+        },
+        f: {
+          color: 'yellow',
+          sound: new Howl({
+            urls: ['assets/sounds/dotted-spiral.mp3']
+          })
+        },
+        h: {
+          color: 'lime',
+          sound: new Howl({
+            urls: ['assets/sounds/flash-1.mp3']
+          })
+        },
+        j: {
+          color: 'green',
+          sound: new Howl({
+            urls: ['assets/sounds/glimmer.mp3']
+          })
+        },
+        k: {
+          color: 'dark-blue',
+          sound: new Howl({
+            urls: ['assets/sounds/moon.mp3']
+          })
+        },
+        l: {
+          color: 'brown',
+          sound: new Howl({
+            urls: ['assets/sounds/pinwheel.mp3']
+          })
+        }
+      }
 
-        var circles = [];
-        
-        function onKeyDown(event) {
+      var circles = [];
+      
+      function onKeyDown(event) {
+        if(keyData[event.key]) {
           var maxPoint = new Point(view.size.width, view.size.height);
           var randomPoint = Point.random();
           var point = maxPoint * randomPoint;
           var newCircle = new Path.Circle(point, 500);
-          newCircle.fillColor = 'orange';
+          newCircle.fillColor = keyData[event.key].color;
+          keyData[event.key].sound.play()
           circles.push(newCircle);
         }
+      }
 
-        function onFrame(event) {
-          for(var i = 0; i < circles.length; i++) {
-          console.log(circles[i]);
-            circles[i].fillColor.hue += 1;
-            circles[i].scale(.95);
-          }
+      function onFrame(event) {
+        for(var i = 0; i < circles.length; i++) {
+        console.log(circles[i]);
+          circles[i].fillColor.hue += 1;
+          circles[i].scale(.95);
         }
+      }
 
     </script>
   </head>
